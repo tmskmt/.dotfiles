@@ -14,6 +14,7 @@ set autoindent
 syntax enable
 
 set number
+set list
 set ruler              "カーソル行が何行目何列目に置かれているか表示
 set listchars=eol:¶,tab:_\
 set cursorline         "カーソル行ハイライト

@@ -38,9 +38,41 @@ alias l='ls -CF'
 alias sed="gsed"
 alias dok="docker"
 alias doc="docker-compose"
+alias readlink="greadlink"
+alias chrm="open /Applications/Google\ Chrome.app"
+#業務でよく使うので、、、、
+alias aipo="open https://aipo.tmlab.jp/"
+alias mtm="open /Applications/Mattermost.app"
 # --------------------------------------------------
 #  $ tree でディレクトリ構成表示
 # --------------------------------------------------
 
 alias tree="pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'"
 
+# --------------------------------------------------
+#  awsで使うやつ
+# --------------------------------------------------
+
+
+source /usr/local/bin/aws_zsh_completer.sh
+
+# --------------------------------------
+# Google search from terminal
+# --------------------------------------
+ggl(){
+    if [ $(echo $1 | egrep "^-[cfs]$") ]; then
+        local opt="$1"
+        shift
+    fi
+    local url="https://www.google.co.jp/search?q=${*// /+}"
+    local app="/Applications"
+    local g="${app}/Google Chrome.app"
+    local f="${app}/Firefox.app"
+    local s="${app}/Safari.app"
+    case ${opt} in
+        "-g")   open "${url}" -a "$g";;
+        "-f")   open "${url}" -a "$f";;
+        "-s")   open "${url}" -a "$s";;
+        *)      open "${url}";;
+    esac
+}

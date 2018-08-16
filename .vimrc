@@ -1,6 +1,11 @@
 "*****************************************************************************
-" Indent Width
+" テンプレートの読み込み
 "*****************************************************************************"
+runtime! config/init/*.vim
+
+"*****************************************************************************
+" Indent Width
+"*****************************************************************************
 set shiftwidth=2       "行頭での<Tab>の幅
 set tabstop=2          "行頭以外での<Tab>の幅
 set expandtab          "<Tab>の代わりに<Space>を挿入する
@@ -14,7 +19,6 @@ set autoindent
 syntax enable
 
 set number
-set list
 set ruler              "カーソル行が何行目何列目に置かれているか表示
 set listchars=eol:¶,tab:_\
 set cursorline         "カーソル行ハイライト
@@ -42,9 +46,28 @@ set smartcase          "検索時に大文字を含んでいたら大小を区�
 set wrapscan           "検索をファイルの先頭へループする
 
 
+""スペルチェック
+"set spell
+"set spelllang=en,cjk "日本語を除外"
 
 set wildmenu " コマンドモードの補完
 set history=5000 " 保存するコマンド履歴の数
+
+"*****************************************************************************
+"" keybind
+"*****************************************************************************
+
+inoremap jj <Esc>
+inoremap zz <Esc>:w<Cr>
+inoremap qq <Esc>:wq<Cr>
+inoremap ww <Esc>:w<Cr>i
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+imap <C-j> <esc>
+noremap! <C-j> <esc>
 
  "*****************************************************************************
  "" プラグイン管理
@@ -53,7 +76,7 @@ if has('vim_starting')
     " 初回起動時のみruntimepathにNeoBundleのパスを指定する
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 
-    " NeoBundleが未インストールであればgit cloneする・・・・・・①
+
     if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
         echo "install NeoBundle..."
         :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
@@ -112,10 +135,7 @@ set clipboard+=unnamed
 
 
 "----------------------------------------------------------
-" esc control+j 
+" vim新規作成時、拡張子に対応したテンプレートの呼び出し
 "----------------------------------------------------------
-imap <C-j> <esc>
-noremap! <C-j> <esc>
-
 
 autocmd BufNewFile *.sh 0r $HOME/.vim/template/shell.txt

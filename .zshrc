@@ -54,9 +54,7 @@ alias g="git"
 
 alias tree="pwd;find . | sort | sed '1d;s/^\.//;s/\/\([^/]*\)$/|--\1/;s/\/[^/|]*/| /g'"
 
-
 # --------------------------------------------------
-
 
 source /usr/local/bin/aws_zsh_completer.sh
 
@@ -90,26 +88,19 @@ ggl(){
 # gitのブランチ名表示
 # --------------------------------------
 
-function parse_git_branch {
-  RED="\e[0;31m"
-  YELLOW="\e[33m"
-  GREEN="\e[0;32m"
-  BLUE="\e[0;34m"
-  NONE="\e[0m"
+# この行は現在のパスを表示する設定です。ブランチを表示して色をつける設定とは関係ありません
+#RPROMPT="%{${fg[white]}%}[%~]%{${reset_color}%}"
+# %a アクション名（mergeとか）
+# %b ブランチ名
+# %c = stagedstr
+# %u = unstagedstr
 
-  NOW_BRANCH=$(git symbolic-ref HEAD 2> /dev/null | cut -d/ -f3)
-  IND_STAT=$(git status --porcelain 2> /dev/null | grep -v "?" | cut -d" " -f1 )
-  WTR_STAT=$(git status --porcelain 2> /dev/null | grep -v "?" | cut -d" " -f2 )
-
-  if [ "${IND_STAT}" != "" ]; then
-    [[ ${NOW_BRANCH} ]] && echo -e "${RED}[${NOW_BRANCH}]${NONE}"
-
-  elif [ "${WTR_STAT}" != "" ]; then
-    [[ ${NOW_BRANCH} ]] && echo -e "${YELLOW}[${NOW_BRANCH}]${NONE}"
-
-  else
-    [[ ${NOW_BRANCH} ]] && echo -e "${BLUE}[${NOW_BRANCH}]${NONE}"
-
-  fi
-
-}
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!" #commitされていない時
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+" #addされていないファイルがある時
+zstyle ':vcs_info:*' formats "%c%u%f(%F{cyan}%b%f@%r)%f" #通常の表示
+zstyle ':vcs_info:*' actionformats '[%b|%a]' #
+precmd () { vcs_info }
+RPROMPT='${vcs_info_msg_0_}'

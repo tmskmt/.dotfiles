@@ -21,5 +21,14 @@ Plug 'bronson/vim-trailing-whitespace'
 " ディレクトリをツリー構造で表示
 Plug 'scrooloose/nerdtree'
 
+if has('lua')
+  " コードの自動補完
+  Plug 'Shougo/neocomplete.vim'
+  " スニペットの補完機能
+  Plug 'Shougo/neosnippet'
+  " スニペット集
+  Plug 'Shougo/neosnippet-snippets'
+endif
+
 call plug#end()
 

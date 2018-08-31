@@ -51,6 +51,8 @@ alias d="docker"
 alias doc="docker-compose"
 alias readlink="greadlink"
 alias chrm="open /Applications/Google\ Chrome.app"
+alias cl="clear"
+
 #業務でよく使うので、、、、
 alias aipo="open https://aipo.tmlab.jp/"
 alias mtm="open /Applications/Mattermost.app"
@@ -111,3 +113,9 @@ zstyle ':vcs_info:*' formats "%c%u%f(%F{cyan}%b%f@%r)%f" #通常の表示
 zstyle ':vcs_info:*' actionformats '[%b|%a]' #
 precmd () { vcs_info }
 RPROMPT='${vcs_info_msg_0_}'
+
+# --------------------------------------
+# 
+# --------------------------------------
+export PATH="/usr/local/bin:$PATH"
+

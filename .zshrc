@@ -1,3 +1,10 @@
+# --------------------------------------
+# プラグインマネージャー設定（zplug）
+# --------------------------------------
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
 #タブタイトルにカレントディレクトリのフォルダ名を表示
 precmd () {
   echo -ne "\e]2;${PWD}\a"
@@ -35,9 +42,9 @@ SAVEHIST=10000
 #プロンプトの設定
 PROMPT='[%F{cyan}%~%f]$ '
 
-
-alias ll='ls -l'
-alias la='ls -Al'
+alias ls='la -G'
+alias ll='ls -lF'
+alias la='ls -lA'
 alias l='ls -CF'
 alias sed="gsed"
 alias d="docker"

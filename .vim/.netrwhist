@@ -1,3 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/Users/work/.dotfiles/.vim/config/plugins'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/kensuke.sakamoto/gtndev(git)/aws/stg_initscript/api/etc/nginx/conf.d'
+let g:netrw_dirhist_2='/Users/kensuke.sakamoto/gtndev(git)/aws/stg_initscript/api/etc/nginx'
+let g:netrw_dirhist_3='/Users/kensuke.sakamoto/gtndev(git)/aws/stg_initscript/api/etc/nginx/conf.d'
+let g:netrw_dirhist_4='/Users/kensuke.sakamoto/gtndev(git)/aws/stg_initscript'
+let g:netrw_dirhist_5='/Users/kensuke.sakamoto/gtndev(git)/aws'
+let g:netrw_dirhist_6='/Users/kensuke.sakamoto/gtndev(git)'
+let g:netrw_dirhist_7='/Users/kensuke.sakamoto/gtndev(git)/servers'
+let g:netrw_dirhist_8='/Users/kensuke.sakamoto/gtndev(git)/servers/admin'

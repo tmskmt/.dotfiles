@@ -6,3 +6,6 @@ fi
 
 
 $(boot2docker shellinit 2> /dev/null)
+
+# added by Anaconda3 5.2.0 installer
+export PATH="/anaconda3/bin:$PATH"

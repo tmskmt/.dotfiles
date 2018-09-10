@@ -2,14 +2,32 @@
 # プラグインマネージャー設定（zplug）
 # --------------------------------------
 
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+source ~/.zplug/init.zsh
+
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+
+if ! zplug check --verbose; then
+   printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# プラグインを読み込み、コマンドにパスを通す
+zplug load --verbose
+
+# --------------------------------------
+# POWERLEVEL9K設定
+# --------------------------------------
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
 
 #タブタイトルにカレントディレクトリのフォルダ名を表示
-precmd () {
-  echo -ne "\e]2;${PWD}\a"
-  echo -ne "\e]1;${PWD:t}\a"
-}
+#precmd () {
+#  echo -ne "\e]2;${PWD}\a"
+#  echo -ne "\e]1;${PWD:t}\a"
+#}
 
 
 # 強力な補完を有効にする
@@ -40,7 +58,7 @@ SAVEHIST=10000
 #PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 
 #プロンプトの設定
-PROMPT='[%F{cyan}%~%f]$ '
+#PROMPT='[%F{cyan}%~%f]$ '
 
 alias ls='la -G'
 alias ll='ls -lF'
@@ -52,6 +70,8 @@ alias doc="docker-compose"
 alias readlink="greadlink"
 alias chrm="open /Applications/Google\ Chrome.app"
 alias cl="clear"
+alias svim='vim -u ~/.SpaceVim/vimrc'
+alias dvim='vim -u ~/.vim/essential.vim'
 
 #業務でよく使うので、、、、
 alias aipo="open https://aipo.tmlab.jp/"
@@ -104,18 +124,19 @@ ggl(){
 # %c = stagedstr
 # %u = unstagedstr
 
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!" #commitされていない時
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+" #addされていないファイルがある時
-zstyle ':vcs_info:*' formats "%c%u%f(%F{cyan}%b%f@%r)%f" #通常の表示
-zstyle ':vcs_info:*' actionformats '[%b|%a]' #
-precmd () { vcs_info }
-RPROMPT='${vcs_info_msg_0_}'
+#autoload -Uz vcs_info
+#setopt prompt_subst
+#zstyle ':vcs_info:git:*' check-for-changes true
+#zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!" #commitされていない時
+#zstyle ':vcs_info:git:*' unstagedstr "%F{red}+" #addされていないファイルがある時
+#zstyle ':vcs_info:*' formats "%c%u%f(%F{cyan}%b%f@%r)%f" #通常の表示
+#zstyle ':vcs_info:*' actionformats '[%b|%a]' #
+#precmd () { vcs_info }
+#RPROMPT='${vcs_info_msg_0_}'
 
 # --------------------------------------
 # 
 # --------------------------------------
 export PATH="/usr/local/bin:$PATH"
 
+POWERLEVEL9K_MODE='nerdfont-complete'

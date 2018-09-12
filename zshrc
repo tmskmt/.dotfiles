@@ -1,9 +1,22 @@
+# zplug settings(Homebrew)
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+# zplug settings(git)
+#source ~/.zplug/init.zsh
+
+# --------------------------------------
+# POWERLEVEL9K設定
+# --------------------------------------
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_MODE='nerdfont-complete'
+
 # --------------------------------------
 # プラグインマネージャー設定（zplug）
 # --------------------------------------
 
-source ~/.zplug/init.zsh
 
+#pluginList
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 
@@ -139,4 +152,3 @@ ggl(){
 # --------------------------------------
 export PATH="/usr/local/bin:$PATH"
 
-POWERLEVEL9K_MODE='nerdfont-complete'

@@ -1,13 +1,18 @@
-# zplug settings(Homebrew)
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-# zplug settings(git)
-#source ~/.zplug/init.zsh
+# --------------------------------------
+# zplug 初期設定
+# --------------------------------------
+#自身のパスを取得
+SCRIPT_DIR_PATH=$(dirname $(greadlink -f $0))
+
+# zplug settings(Homebrew管理の場合)
+#export ZPLUG_HOME=/usr/local/opt/zplug
+#source $ZPLUG_HOME/init.zsh
+
+source ~/.zplug/init.zsh
 
 # --------------------------------------
 # プラグインマネージャー設定（zplug）
 # --------------------------------------
-
 
 #pluginList
 zplug "b4b4r07/enhancd", use:init.sh

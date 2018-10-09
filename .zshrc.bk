@@ -1,21 +1,11 @@
-# --------------------------------------
-# 各種プラグイン詳細設定
-# --------------------------------------
+#タブタイトルにカレントディレクトリのフォルダ名を表示
+precmd () {
+  echo -ne "\e]2;${PWD}\a"
+  echo -ne "\e]1;${PWD:t}\a"
+}
 
-source ~/.zsh/pluginConfig/*
 
-# --------------------------------------
-# プラグインマネージャー設定（zplug）
-# --------------------------------------
-
-#プラグインの一覧ファイル
-source ~/.zsh/pluginList.zsh
-
-# --------------------------------------
-# 各種設定 
-# --------------------------------------
-
-# 補完を有効にする
+# 強力な補完を有効にする
 autoload -Uz compinit
 compinit
 
@@ -24,14 +14,15 @@ autoload -U colors
 colors
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 
-# コマンドの打ち間違いを指摘
+# コマンドの打ち間違いを指摘してくれる
 setopt correct
 SPROMPT="correct: $RED%R$DEFAULT -> $GREEN%r$DEFAULT ? [Yes/No/Abort/Edit] => "
 
-# cdを使わずにディレクトリを移動
+# cdを使わずにディレクトリを移動できる
 setopt auto_cd
 
-# $ cd - でTabを押すと、ディレクトリの履歴表示
+
+# $ cd - でTabを押すと、ディレクトリの履歴が見れる
 setopt auto_pushd
 
 # ヒストリの設定
@@ -42,13 +33,35 @@ SAVEHIST=10000
 # カレントディレクトリの表示
 #PS1="%{$fg[cyan]%}[${USER}@${HOST%%.*} %1~]%(!.#.$)${reset_color} "
 
-#プロンプトの設定
-#PROMPT='[%F{cyan}%~%f]$ '
+# --------------------------------------
+# 
+# --------------------------------------
 
-alias ls='la -G'
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+
+
+#プロンプトの設定
+PROMPT='[%F{cyan}%~%f]$ '
+
+# --------------------------------------
+# ショートカットの設定
+# --------------------------------------
+
+alias ls='ls -G'
 alias ll='ls -lF'
-alias la='ls -lA'
+alias la='ls -lAF'
 alias l='ls -CF'
+alias v='vim'
 alias sed="gsed"
 alias d="docker"
 alias doc="docker-compose"
@@ -94,6 +107,11 @@ ggl(){
 }
 
 # --------------------------------------
+# gitの補完強化
+# --------------------------------------
+
+ autoload -Uz compinit && compinit
+# --------------------------------------
 # gitのブランチ名表示
 # --------------------------------------
 
@@ -104,14 +122,24 @@ ggl(){
 # %c = stagedstr
 # %u = unstagedstr
 
-#autoload -Uz vcs_info
-#setopt prompt_subst
-#zstyle ':vcs_info:git:*' check-for-changes true
-#zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!" #commitされていない時
-#zstyle ':vcs_info:git:*' unstagedstr "%F{red}+" #addされていないファイルがある時
-#zstyle ':vcs_info:*' formats "%c%u%f(%F{cyan}%b%f@%r)%f" #通常の表示
-#zstyle ':vcs_info:*' actionformats '[%b|%a]' #
-#precmd () { vcs_info }
-#RPROMPT='${vcs_info_msg_0_}'
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!" #commitされていない時
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+" #addされていないファイルがある時
+zstyle ':vcs_info:*' formats "%c%u%f(%F{cyan}%b%f@%r)%f" #通常の表示
+zstyle ':vcs_info:*' actionformats '[%b|%a]' #
+precmd () { vcs_info }
+RPROMPT='${vcs_info_msg_0_}'
 
+# --------------------------------------
+# zplugの有効化（プラグインマネージャー）
+# --------------------------------------
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+# --------------------------------------
+# vim --luaの有効化
+# --------------------------------------
 export PATH="/usr/local/bin:$PATH"

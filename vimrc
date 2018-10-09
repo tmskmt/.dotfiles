@@ -57,6 +57,11 @@ set wrapscan           "検索をファイルの先頭へループする
 
 "ESCキー2度押しでハイライトの切り替え
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 
 ""スペルチェック
 "set spell
@@ -107,6 +112,5 @@ set ruler " ステータスラインの右側にカーソルの現在位置を�
 "----------------------------------------------------------
 " クリップボードの共有化
 "----------------------------------------------------------
-set clipboard+=unnamed
 
 

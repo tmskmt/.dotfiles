@@ -7,6 +7,8 @@ runtime! config/init/*.vim
 "各種プラグイン設定ファイルの読み込み
 runtime! config/plugin-config/*.vim
 
+"各種設定ファイルの読み込み
+runtime! config/**/*.vim
 "*****************************************************************************
 " バックスペースの有効化
 "*****************************************************************************
@@ -55,6 +57,9 @@ set ignorecase         "検索時に文字の大小を区別しない
 set smartcase          "検索時に大文字を含んでいたら大小を区別する
 set wrapscan           "検索をファイルの先頭へループする
 
+"" enable mouse using
+set mouse=a
+set ttymouse=xterm2
 "ESCキー2度押しでハイライトの切り替え
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 nnoremap <silent> [b :bprevious<CR>
@@ -93,6 +98,9 @@ nnoremap <C-h> ^
 nnoremap <C-l> $
 nnoremap <C-j> 20j
 nnoremap <C-k> 20k
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+"cnoremap <expr> %% getcmdtype() == ':' ? expand('%: h').'/' : '%%'
  "*****************************************************************************
  "" プラグイン管理
  " *****************************************************************************"

@@ -1,3 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/Users/kensuke.sakamoto/.dotfiles/zsh'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/kensuke.sakamoto/Documents/案件/産業廃棄物/code/web/resources/views/company/collection'
+let g:netrw_dirhist_2='/Users/kensuke.sakamoto/Documents/案件/産業廃棄物/code/web/resources/views/company'
+let g:netrw_dirhist_3='/Users/kensuke.sakamoto/Documents/案件/産業廃棄物/code/web/resources/views'
+let g:netrw_dirhist_4='/Users/kensuke.sakamoto/Documents/案件/産業廃棄物/code/web'
+let g:netrw_dirhist_5='/Users/kensuke.sakamoto/Documents/案件/産業廃棄物/code/web/app'
+let g:netrw_dirhist_6='/Users/kensuke.sakamoto/Documents/案件/産業廃棄物/code/web'

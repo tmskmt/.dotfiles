@@ -8,7 +8,8 @@ SCRIPT_DIR_PATH=$(dirname $(greadlink -f $0))
 #export ZPLUG_HOME=/usr/local/opt/zplug
 #source $ZPLUG_HOME/init.zsh
 
-source ~/.zplug/init.zsh
+export ZPLUG_HOME=${HOME}/.zplug
+source ${ZPLUG_HOME}/init.zsh
 
 # --------------------------------------
 # プラグインマネージャー設定（zplug）
